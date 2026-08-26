@@ -1,4 +1,4 @@
-# 🛡️ AegisOne
+﻿# 🛡️ AegisOne
 
 ## AI-Powered Cybersecurity & Digital Risk Management Platform
 
@@ -811,3 +811,4 @@ A formal open-source license can be added before public distribution.
 ### Monitor. Analyze. Protect.
 
 **A modular cybersecurity and digital risk platform built for modern security operations.**
+
