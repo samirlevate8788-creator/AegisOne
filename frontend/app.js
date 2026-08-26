@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    AEGISONE - FRONTEND APPLICATION
    Full Dashboard JavaScript
    ========================================================= */
@@ -9,7 +9,7 @@
    API CONFIGURATION
    ========================================================= */
 
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE = "https://aegisone-rngk.onrender.com";
 
 
 /* =========================================================
@@ -839,7 +839,7 @@ function renderDashboardAssets() {
         container.innerHTML = `
             <div class="empty-state">
 
-                <span>▣</span>
+                <span>â–£</span>
 
                 <h4>
                     No assets registered
@@ -951,7 +951,7 @@ function getAssetRisk(asset) {
         score,
         level: String(level).toLowerCase(),
         label:
-            `${score} · ${String(level).toUpperCase()}`
+            `${score} Â· ${String(level).toUpperCase()}`
     };
 
 }
@@ -1106,7 +1106,7 @@ async function loadRiskOverview() {
     container.innerHTML = `
         <div class="empty-state">
 
-            <span>⏳</span>
+            <span>â³</span>
 
             <h4>
                 Loading risk analysis...
@@ -1141,7 +1141,7 @@ async function loadRiskOverview() {
             container.innerHTML = `
                 <div class="empty-state">
 
-                    <span>◉</span>
+                    <span>â—‰</span>
 
                     <h4>
                         No assets available
@@ -1259,7 +1259,7 @@ async function loadRiskOverview() {
                         <div class="risk-asset-main">
 
                             <div class="risk-asset-icon">
-                                🛡️
+                                ðŸ›¡ï¸
                             </div>
 
                             <div class="risk-asset-info">
@@ -1341,7 +1341,7 @@ async function loadRiskOverview() {
         container.innerHTML = `
             <div class="empty-state">
 
-                <span>⚠️</span>
+                <span>âš ï¸</span>
 
                 <h4>
                     Unable to load risk data
@@ -1408,7 +1408,7 @@ async function calculateAssetRisk(assetId) {
                 <div class="risk-result">
 
                     <div class="risk-result-icon">
-                        🛡️
+                        ðŸ›¡ï¸
                     </div>
 
                     <h4>
@@ -1661,7 +1661,7 @@ function renderFindings(findings) {
             recent.innerHTML = `
                 <div class="empty-state small">
 
-                    <span>✓</span>
+                    <span>âœ“</span>
 
                     <p>
                         No security findings available.
@@ -1935,7 +1935,7 @@ async function createAsset(event) {
             button.disabled = false;
 
             button.innerHTML =
-                "＋ Add Asset";
+                "ï¼‹ Add Asset";
 
         }
 
@@ -2207,11 +2207,11 @@ function showToast(
 
     const icon =
         type === "success"
-            ? "✓"
+            ? "âœ“"
             : type === "error"
                 ? "!"
                 : type === "warning"
-                    ? "⚠"
+                    ? "âš "
                     : "i";
 
 
