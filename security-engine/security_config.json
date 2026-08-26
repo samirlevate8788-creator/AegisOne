@@ -1,0 +1,20 @@
+{
+  "engine": {
+    "name": "AegisOne Security Engine",
+    "version": "1.0.0",
+    "mode": "defensive"
+  },
+  "checks": {
+    "security_headers": true,
+    "configuration_review": true,
+    "risk_validation": true,
+    "input_validation": true,
+    "health_monitoring": true
+  },
+  "severity_levels": [
+    "critical",
+    "high",
+    "medium",
+    "low"
+  ]
+}

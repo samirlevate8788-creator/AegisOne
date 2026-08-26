@@ -1,0 +1,31 @@
+{
+  "engine": {
+    "name": "AegisOne AI Risk Engine",
+    "version": "1.0.0",
+    "mode": "defensive"
+  },
+  "analysis": {
+    "enabled": true,
+    "risk_prediction": true,
+    "severity_classification": true,
+    "recommendations": true
+  },
+  "risk_levels": {
+    "low": {
+      "minimum": 0,
+      "maximum": 24
+    },
+    "medium": {
+      "minimum": 25,
+      "maximum": 49
+    },
+    "high": {
+      "minimum": 50,
+      "maximum": 74
+    },
+    "critical": {
+      "minimum": 75,
+      "maximum": 100
+    }
+  }
+}

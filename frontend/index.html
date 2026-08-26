@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="AegisOne - AI-Powered Cybersecurity and Digital Risk Platform"
+    >
+
+    <title>AegisOne | Security Operations Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-mark">
+                    <span>A</span>
+                </div>
+
+                <div class="brand-text">
+                    <h1>AegisOne</h1>
+                    <p>Security Platform</p>
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <p class="nav-label">MAIN</p>
+
+
+                <button
+                    class="nav-item active"
+                    type="button"
+                    data-section="dashboard"
+                    onclick="showSection('dashboard')"
+                >
+                    <span class="nav-icon">◈</span>
+                    <span>Dashboard</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    type="button"
+                    data-section="assets"
+                    onclick="showSection('assets')"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Assets</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    type="button"
+                    data-section="findings"
+                    onclick="showSection('findings')"
+                >
+                    <span class="nav-icon">⚠</span>
+                    <span>Findings</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    type="button"
+                    data-section="risk"
+                    onclick="showSection('risk')"
+                >
+                    <span class="nav-icon">◉</span>
+                    <span>Risk Analysis</span>
+                </button>
+
+
+                <p class="nav-label nav-label-space">
+                    SYSTEM
+                </p>
+
+
+                <button
+                    class="nav-item"
+                    type="button"
+                    data-section="system"
+                    onclick="showSection('system')"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>System</span>
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+
+                <div class="security-indicator">
+
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>System Online</strong>
+                        <small>API connected</small>
+                    </div>
+
+                </div>
+
+                <p>AegisOne v1.0.0</p>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN AREA ================= -->
+
+        <div class="main-area">
+
+
+            <!-- ================= TOPBAR ================= -->
+
+            <header class="topbar">
+
+                <button
+                    class="menu-button"
+                    type="button"
+                    onclick="toggleSidebar()"
+                    aria-label="Toggle navigation"
+                >
+                    ☰
+                </button>
+
+
+                <div class="topbar-title">
+
+                    <span id="pageEyebrow">
+                        SECURITY OPERATIONS
+                    </span>
+
+                    <h2 id="pageTitle">
+                        Security Dashboard
+                    </h2>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <div
+                        class="connection-status"
+                        id="connectionStatus"
+                    >
+
+                        <span class="status-dot"></span>
+
+                        <span id="connectionText">
+                            Checking API...
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="icon-button"
+                        type="button"
+                        onclick="refreshDashboard()"
+                        title="Refresh dashboard"
+                    >
+                        ↻
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= CONTENT ================= -->
+
+            <main class="content">
+
+
+                <!-- =================================================
+                     DASHBOARD
+                ================================================== -->
+
+                <section
+                    id="dashboardSection"
+                    class="page-section active-section"
+                >
+
+                    <div class="hero-panel">
+
+                        <div class="hero-content">
+
+                            <div class="hero-badge">
+                                <span></span>
+                                LIVE SECURITY MONITORING
+                            </div>
+
+
+                            <h1>
+                                Security Risk
+                                <span>Command Center</span>
+                            </h1>
+
+
+                            <p>
+                                Monitor your digital assets, analyze
+                                security risks and manage findings
+                                from one centralized platform.
+                            </p>
+
+
+                            <div class="hero-actions">
+
+                                <button
+                                    class="btn btn-primary"
+                                    type="button"
+                                    onclick="refreshDashboard()"
+                                >
+                                    ↻ Refresh Dashboard
+                                </button>
+
+
+                                <button
+                                    class="btn btn-secondary"
+                                    type="button"
+                                    onclick="showSection('assets')"
+                                >
+                                    ＋ Add Asset
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-visual">
+
+                            <div class="shield-glow">
+
+                                <div class="shield">
+                                    🛡
+                                </div>
+
+                            </div>
+
+                            <div class="hero-orbit orbit-one"></div>
+                            <div class="hero-orbit orbit-two"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= STATS ================= -->
+
+                    <div class="stats-grid">
+
+
+                        <article class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon blue">
+                                    ▣
+                                </div>
+
+                                <span class="stat-label">
+                                    ASSETS
+                                </span>
+
+                            </div>
+
+                            <strong
+                                id="totalAssets"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                Total monitored assets
+                            </p>
+
+                        </article>
+
+
+                        <article class="stat-card critical-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon red">
+                                    !
+                                </div>
+
+                                <span class="stat-label">
+                                    CRITICAL
+                                </span>
+
+                            </div>
+
+                            <strong
+                                id="criticalAssets"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                Critical risk assets
+                            </p>
+
+                        </article>
+
+
+                        <article class="stat-card high-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon orange">
+                                    ▲
+                                </div>
+
+                                <span class="stat-label">
+                                    HIGH RISK
+                                </span>
+
+                            </div>
+
+                            <strong
+                                id="highRisk"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                Assets requiring attention
+                            </p>
+
+                        </article>
+
+
+                        <article class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon purple">
+                                    ◉
+                                </div>
+
+                                <span class="stat-label">
+                                    AVG RISK
+                                </span>
+
+                            </div>
+
+                            <strong
+                                id="averageRisk"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                Average security score
+                            </p>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- ================= DASHBOARD GRID ================= -->
+
+                    <div class="dashboard-grid">
+
+
+                        <!-- RISK DISTRIBUTION -->
+
+                        <article class="panel risk-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        SECURITY ANALYTICS
+                                    </span>
+
+                                    <h3>
+                                        Risk Distribution
+                                    </h3>
+
+                                </div>
+
+                                <span class="panel-icon">
+                                    ◉
+                                </span>
+
+                            </div>
+
+
+                            <div class="risk-chart">
+
+                                <div class="risk-ring">
+
+                                    <div class="risk-ring-inner">
+
+                                        <strong id="riskScore">
+                                            0
+                                        </strong>
+
+                                        <span>
+                                            RISK
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="risk-legend">
+
+                                    <div class="legend-item">
+
+                                        <span
+                                            class="legend-dot critical-dot"
+                                        ></span>
+
+                                        <span>Critical</span>
+
+                                        <strong id="criticalCount">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="legend-item">
+
+                                        <span
+                                            class="legend-dot high-dot"
+                                        ></span>
+
+                                        <span>High</span>
+
+                                        <strong id="highCount">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="legend-item">
+
+                                        <span
+                                            class="legend-dot medium-dot"
+                                        ></span>
+
+                                        <span>Medium</span>
+
+                                        <strong id="mediumCount">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="legend-item">
+
+                                        <span
+                                            class="legend-dot low-dot"
+                                        ></span>
+
+                                        <span>Low</span>
+
+                                        <strong id="lowCount">
+                                            0
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- SECURITY FINDINGS -->
+
+                        <article class="panel findings-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        SECURITY INTELLIGENCE
+                                    </span>
+
+                                    <h3>
+                                        Security Findings
+                                    </h3>
+
+                                </div>
+
+
+                                <button
+                                    class="text-button"
+                                    type="button"
+                                    onclick="showSection('findings')"
+                                >
+                                    View All →
+                                </button>
+
+                            </div>
+
+
+                            <div class="finding-metrics">
+
+                                <div class="finding-box">
+
+                                    <span>
+                                        Total Findings
+                                    </span>
+
+                                    <strong id="totalFindings">
+                                        0
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="finding-box">
+
+                                    <span>
+                                        Open Findings
+                                    </span>
+
+                                    <strong id="openFindings">
+                                        0
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                id="recentFindings"
+                                class="recent-findings"
+                            >
+
+                                <div class="empty-state small">
+
+                                    <span>✓</span>
+
+                                    <p>
+                                        No security findings available.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- ================= ASSET OVERVIEW ================= -->
+
+                    <article class="panel overview-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-eyebrow">
+                                    INFRASTRUCTURE
+                                </span>
+
+                                <h3>
+                                    Asset Overview
+                                </h3>
+
+                            </div>
+
+
+                            <button
+                                class="text-button"
+                                type="button"
+                                onclick="showSection('assets')"
+                            >
+                                Manage Assets →
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="dashboardAssetList"
+                            class="asset-preview"
+                        >
+
+                            <div class="empty-state">
+
+                                <span>▣</span>
+
+                                <h4>
+                                    No assets registered
+                                </h4>
+
+                                <p>
+                                    Add your first asset to start
+                                    monitoring security risk.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     ASSETS
+                ================================================== -->
+
+                <section
+                    id="assetsSection"
+                    class="page-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="panel-eyebrow">
+                                ASSET MANAGEMENT
+                            </span>
+
+                            <h1>
+                                Security Assets
+                            </h1>
+
+                            <p>
+                                Register and manage infrastructure
+                                assets monitored by AegisOne.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            onclick="loadAssets()"
+                        >
+                            ↻ Refresh Assets
+                        </button>
+
+                    </div>
+
+
+                    <!-- ADD ASSET FORM -->
+
+                    <article class="panel form-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-eyebrow">
+                                    NEW ASSET
+                                </span>
+
+                                <h3>
+                                    Add Security Asset
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <form
+                            id="assetForm"
+                            onsubmit="createAsset(event)"
+                        >
+
+                            <div class="form-grid">
+
+
+                                <div class="form-group">
+
+                                    <label for="assetName">
+                                        Asset Name
+                                    </label>
+
+                                    <input
+                                        id="assetName"
+                                        name="assetName"
+                                        type="text"
+                                        placeholder="e.g. Production Server"
+                                        autocomplete="off"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="assetType">
+                                        Asset Type
+                                    </label>
+
+                                    <select
+                                        id="assetType"
+                                        name="assetType"
+                                        required
+                                    >
+
+                                        <option value="server">
+                                            Server
+                                        </option>
+
+                                        <option value="website">
+                                            Website
+                                        </option>
+
+                                        <option value="database">
+                                            Database
+                                        </option>
+
+                                        <option value="application">
+                                            Application
+                                        </option>
+
+                                        <option value="network">
+                                            Network
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="assetTarget">
+                                        Target / IP / Domain
+                                    </label>
+
+                                    <input
+                                        id="assetTarget"
+                                        name="assetTarget"
+                                        type="text"
+                                        placeholder="e.g. 192.168.1.10"
+                                        autocomplete="off"
+                                        required
+                                    >
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="assetEnvironment">
+                                        Environment
+                                    </label>
+
+                                    <select
+                                        id="assetEnvironment"
+                                        name="assetEnvironment"
+                                        required
+                                    >
+
+                                        <option value="development">
+                                            Development
+                                        </option>
+
+                                        <option value="staging">
+                                            Staging
+                                        </option>
+
+                                        <option value="production">
+                                            Production
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-actions">
+
+                                <button
+                                    class="btn btn-primary"
+                                    type="submit"
+                                    id="createAssetButton"
+                                >
+                                    ＋ Add Asset
+                                </button>
+
+
+                                <button
+                                    class="btn btn-secondary"
+                                    type="button"
+                                    onclick="resetAssetForm()"
+                                >
+                                    Clear
+                                </button>
+
+                            </div>
+
+
+                            <div
+                                id="assetMessage"
+                                class="form-message"
+                            ></div>
+
+                        </form>
+
+                    </article>
+
+
+                    <!-- ASSET TABLE -->
+
+                    <article class="panel table-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-eyebrow">
+                                    INVENTORY
+                                </span>
+
+                                <h3>
+                                    Monitored Assets
+                                </h3>
+
+                            </div>
+
+
+                            <span
+                                id="assetCountBadge"
+                                class="count-badge"
+                            >
+                                0 Assets
+                            </span>
+
+                        </div>
+
+
+                        <div class="table-wrapper">
+
+                            <table class="data-table">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>Asset</th>
+                                        <th>Type</th>
+                                        <th>Target</th>
+                                        <th>Environment</th>
+                                        <th>Risk</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody id="assetList">
+
+                                    <tr>
+
+                                        <td
+                                            colspan="7"
+                                            class="table-empty"
+                                        >
+                                            Loading assets...
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     FINDINGS
+                ================================================== -->
+
+                <section
+                    id="findingsSection"
+                    class="page-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="panel-eyebrow">
+                                SECURITY INTELLIGENCE
+                            </span>
+
+                            <h1>
+                                Security Findings
+                            </h1>
+
+                            <p>
+                                Review vulnerabilities and security
+                                findings identified across assets.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            onclick="loadFindings()"
+                        >
+                            ↻ Refresh Findings
+                        </button>
+
+                    </div>
+
+
+                    <!-- FINDING STATS -->
+
+                    <div class="stats-grid finding-stats">
+
+
+                        <article class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon purple">
+                                    ⚠
+                                </div>
+
+                                <span class="stat-label">
+                                    TOTAL
+                                </span>
+
+                            </div>
+
+                            <strong
+                                id="findingsTotalPage"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                All security findings
+                            </p>
+
+                        </article>
+
+
+                        <article class="stat-card critical-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon red">
+                                    !
+                                </div>
+
+                                <span class="stat-label">
+                                    CRITICAL
+                                </span>
+
+                            </div>
+
+                            <strong
+                                id="findingsCriticalPage"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                Critical severity findings
+                            </p>
+
+                        </article>
+
+
+                        <article class="stat-card high-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon orange">
+                                    ▲
+                                </div>
+
+                                <span class="stat-label">
+                                    HIGH
+                                </span>
+
+                            </div>
+
+                            <strong
+                                id="findingsHighPage"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                High severity findings
+                            </p>
+
+                        </article>
+
+
+                        <article class="stat-card">
+
+                            <div class="stat-top">
+
+                                <div class="stat-icon blue">
+                                    ◷
+                                </div>
+
+                                <span class="stat-label">
+                                    OPEN
+                                </span>
+
+                            </div>
+
+                            <strong
+                                id="findingsOpenPage"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <p>
+                                Findings awaiting resolution
+                            </p>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- FINDINGS TABLE -->
+
+                    <article class="panel table-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-eyebrow">
+                                    FINDING INVENTORY
+                                </span>
+
+                                <h3>
+                                    All Security Findings
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="table-wrapper">
+
+                            <table class="data-table">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>Finding</th>
+                                        <th>Severity</th>
+                                        <th>Status</th>
+                                        <th>Description</th>
+                                        <th>Recommendation</th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody id="findingsList">
+
+                                    <tr>
+
+                                        <td
+                                            colspan="5"
+                                            class="table-empty"
+                                        >
+                                            Loading findings...
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     RISK ANALYSIS
+                ================================================== -->
+
+                <section
+                    id="riskSection"
+                    class="page-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="panel-eyebrow">
+                                RISK ENGINE
+                            </span>
+
+                            <h1>
+                                Risk Analysis
+                            </h1>
+
+                            <p>
+                                Analyze the security posture of
+                                registered assets.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            onclick="loadRiskOverview()"
+                        >
+                            ↻ Recalculate
+                        </button>
+
+                    </div>
+
+
+                    <article class="panel risk-overview-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-eyebrow">
+                                    SECURITY POSTURE
+                                </span>
+
+                                <h3>
+                                    Current Risk Overview
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="riskAssetList"
+                            class="risk-assets"
+                        >
+
+                            <div class="empty-state">
+
+                                <span>◉</span>
+
+                                <h4>
+                                    No risk data available
+                                </h4>
+
+                                <p>
+                                    Add assets and calculate their
+                                    risk to see analysis here.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     SYSTEM
+                ================================================== -->
+
+                <section
+                    id="systemSection"
+                    class="page-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="panel-eyebrow">
+                                PLATFORM
+                            </span>
+
+                            <h1>
+                                System Status
+                            </h1>
+
+                            <p>
+                                Monitor AegisOne backend services
+                                and connectivity.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            onclick="checkBackendHealth()"
+                        >
+                            ↻ Check Status
+                        </button>
+
+                    </div>
+
+
+                    <!-- SYSTEM STATUS -->
+
+                    <div class="system-grid">
+
+
+                        <article class="system-card">
+
+                            <div class="system-card-icon">
+                                ◉
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    API Server
+                                </span>
+
+                                <strong
+                                    id="apiServerStatus"
+                                    class="system-online"
+                                >
+                                    CHECKING
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="system-card">
+
+                            <div class="system-card-icon">
+                                ◈
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Risk Engine
+                                </span>
+
+                                <strong
+                                    id="riskEngineStatus"
+                                    class="system-online"
+                                >
+                                    ACTIVE
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="system-card">
+
+                            <div class="system-card-icon">
+                                ▣
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Database
+                                </span>
+
+                                <strong
+                                    id="databaseStatus"
+                                    class="system-online"
+                                >
+                                    CONNECTED
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="system-card">
+
+                            <div class="system-card-icon">
+                                ⚡
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Platform
+                                </span>
+
+                                <strong class="system-online">
+                                    ONLINE
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+
+                    <!-- API INFORMATION -->
+
+                    <article class="panel api-info-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+
+                                <span class="panel-eyebrow">
+                                    CONNECTION
+                                </span>
+
+                                <h3>
+                                    API Information
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="api-info-grid">
+
+
+                            <div class="info-row">
+
+                                <span>
+                                    API URL
+                                </span>
+
+                                <code>
+                                    http://127.0.0.1:8000
+                                </code>
+
+                            </div>
+
+
+                            <div class="info-row">
+
+                                <span>
+                                    Documentation
+                                </span>
+
+                                <a
+                                    href="http://127.0.0.1:8000/docs"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Open Swagger Docs →
+                                </a>
+
+                            </div>
+
+
+                            <div class="info-row">
+
+                                <span>
+                                    Health Endpoint
+                                </span>
+
+                                <code>
+                                    /health
+                                </code>
+
+                            </div>
+
+
+                            <div class="info-row">
+
+                                <span>
+                                    Version
+                                </span>
+
+                                <code>
+                                    1.0.0
+                                </code>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+            </main>
+
+
+            <!-- ================= FOOTER ================= -->
+
+            <footer class="footer">
+
+                <div>
+
+                    <strong>
+                        AegisOne
+                    </strong>
+
+                    <span>
+                        AI-Powered Cybersecurity & Digital Risk Platform
+                    </span>
+
+                </div>
+
+
+                <div>
+                    © 2026 AegisOne · Security Operations
+                </div>
+
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div
+        id="toastContainer"
+        class="toast-container"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div
+        id="modalOverlay"
+        class="modal-overlay"
+        onclick="closeModal(event)"
+    >
+
+        <div
+            id="modal"
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle"
+        >
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="panel-eyebrow">
+                        AEGISONE
+                    </span>
+
+                    <h3 id="modalTitle">
+                        Risk Analysis
+                    </h3>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    onclick="closeModal()"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                id="modalBody"
+                class="modal-body"
+            ></div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn btn-secondary"
+                    type="button"
+                    onclick="closeModal()"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
